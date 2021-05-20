@@ -5,3 +5,5 @@
 <a href="https://top.gg/bot/782609831852245062">
     <img src="https://top.gg/api/widget/782609831852245062.svg" alt="Ascenders" />
 </a>
+
+<iframe src="https://discord.com/widget?id=628656463879077900&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
