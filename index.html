@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archie Harvey</title>
+<meta name="description" content="Self-taught developer and med student. Built a Discord bot to 500K+ users, now building everything else.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>⚡</text></svg>">
+<style>
+:root{--bg:#07070c;--card:#101018;--line:#23233a;--tx:#e8e8f2;--mut:#8a8aa6;--a:#a78bfa;--b:#38bdf8;--c:#f472b6;--mono:'JetBrains Mono','SF Mono',Consolas,monospace}
+:root[data-theme=light]{--bg:#f6f6fb;--card:#fff;--line:#dcdcec;--tx:#14141f;--mut:#62627c;--a:#7c3aed;--b:#0284c7;--c:#db2777}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif;overflow-x:hidden}
+canvas#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+main,header,footer{position:relative;z-index:1}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:5;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 70%,transparent);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:20px;height:54px;font-family:var(--mono);font-size:14px}
+nav a{color:var(--mut);text-decoration:none}nav a:hover{color:var(--tx)}
+nav .logo{color:var(--tx);font-weight:700;margin-right:auto}
+button{font:inherit;color:inherit;cursor:pointer}
+.theme{background:none;border:1px solid var(--line);border-radius:8px;padding:4px 10px}
+.hero{padding:90px 0 60px;text-align:center}
+.hero h1{font:800 clamp(40px,9vw,84px)/1.05 var(--mono);background:linear-gradient(90deg,var(--a),var(--b),var(--c),var(--a));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 8s linear infinite;letter-spacing:-2px}
+@keyframes flow{to{background-position:300% 0}}
+.type{font:600 clamp(15px,3vw,20px) var(--mono);color:var(--mut);margin-top:18px;min-height:32px}
+.type b{color:var(--a);font-weight:600}.cur{display:inline-block;width:9px;height:1.1em;background:var(--a);vertical-align:-3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.btn{padding:10px 20px;border-radius:10px;border:1px solid var(--line);background:var(--card);text-decoration:none;color:var(--tx);font:600 14px var(--mono);transition:.2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--a);box-shadow:0 8px 30px -10px var(--a)}
+.btn.p{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;border:0}
+section{padding:60px 0}
+h2{font:700 13px var(--mono);color:var(--a);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+h3.big{font:700 clamp(24px,4vw,34px)/1.2 system-ui;margin-bottom:28px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center}
+.stat .n{font:800 38px var(--mono);color:var(--b)}.stat .l{color:var(--mut);font-size:14px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 16px;font:13px var(--mono);color:var(--mut);transition:.2s}
+.chip.on,.chip:hover{border-color:var(--a);color:var(--tx)}.chip.on{background:color-mix(in srgb,var(--a) 18%,var(--card))}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;cursor:pointer;position:relative;overflow:hidden;transition:transform .15s,border-color .2s;transform-style:preserve-3d}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(300px circle at var(--mx,50%) var(--my,0%),color-mix(in srgb,var(--a) 22%,transparent),transparent 60%);opacity:0;transition:.3s}
+.card:hover::before{opacity:1}.card:hover{border-color:var(--a)}
+.card>*{position:relative}
+.card .ic{font-size:30px}.card h4{font:700 18px var(--mono);margin:8px 0 4px}
+.card p.s{color:var(--mut);font-size:14.5px}
+.card .more{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--mut);font-size:14px}
+.card.open .more{max-height:300px;margin-top:12px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.tag{font:11.5px var(--mono);padding:2px 9px;border-radius:6px;background:color-mix(in srgb,var(--b) 14%,transparent);color:var(--b)}
+.badge{position:absolute!important;top:16px;right:16px;font:11px var(--mono);padding:2px 9px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
+.badge.live{color:#4ade80;border-color:#4ade8055}
+.term{background:#0a0a10;border:1px solid var(--line);border-radius:14px;overflow:hidden;font:14px/1.6 var(--mono);color:#d4d4e8;box-shadow:0 20px 60px -30px var(--a)}
+.term .bar{display:flex;gap:7px;padding:10px 14px;background:#14141e;border-bottom:1px solid var(--line)}
+.term .bar i{width:11px;height:11px;border-radius:50%;background:#ff5f57}.term .bar i:nth-child(2){background:#febc2e}.term .bar i:nth-child(3){background:#28c840}
+.term .out{height:300px;overflow:auto;padding:14px;white-space:pre-wrap}
+.term .out a{color:var(--b)}.term .k{color:var(--a)}.term .e{color:#f87171}
+.term form{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--line)}
+.term input{flex:1;background:none;border:0;outline:0;color:#fff;font:inherit}
+.term .pr{color:#4ade80}
+.skills{display:flex;flex-wrap:wrap;gap:10px}
+.sk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px;font:14px var(--mono);transition:.2s}
+.sk:hover{transform:translateY(-3px) rotate(-1deg);border-color:var(--c)}
+.tl{border-left:2px solid var(--line);margin-left:8px}
+.tl div{padding:0 0 26px 26px;position:relative}
+.tl div::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--a);box-shadow:0 0 0 4px var(--bg),0 0 14px var(--a)}
+.tl b{font:600 13px var(--mono);color:var(--b)}.tl p{color:var(--mut);font-size:15px}
+footer{padding:50px 0 70px;text-align:center;color:var(--mut);font:13px var(--mono)}
+.rv{opacity:0;transform:translateY(24px);transition:.7s}.rv.in{opacity:1;transform:none}
+#toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);background:var(--card);border:1px solid var(--a);padding:10px 18px;border-radius:10px;font:13px var(--mono);z-index:20;transition:.4s}
+#toast.show{transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<nav><div class="wrap">
+  <a class="logo" href="#top">~/archie</a>
+  <a href="#projects">projects</a><a href="#terminal">terminal</a><a href="#story">story</a>
+  <button class="theme" id="theme" aria-label="Toggle theme">◐</button>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <h1>Archie Harvey</h1>
+  <div class="type"><span id="tw"></span><span class="cur"></span></div>
+  <div class="cta">
+    <a class="btn p" href="#projects">See what I've built</a>
+    <a class="btn" href="https://github.com/ArchieHarvey" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="https://www.theascenders.in" target="_blank" rel="noopener">theascenders.in</a>
+    <a class="btn" href="https://www.theascenders.in/contact" target="_blank" rel="noopener">Say hi</a>
+  </div>
+</div></header>
+
+<main class="wrap">
+  <section class="rv"><div class="stats">
+    <div class="stat"><div class="n" data-to="500" data-suf="K+">0</div><div class="l">bot users reached</div></div>
+    <div class="stat"><div class="n" data-to="500" data-suf="+">0</div><div class="l">servers</div></div>
+    <div class="stat"><div class="n" data-to="1" data-suf="">0</div><div class="l">2FA lockout (ouch)</div></div>
+    <div class="stat"><div class="n" data-to="8" data-suf="">0</div><div class="l">projects in the workshop</div></div>
+  </div></section>
+
+  <section id="projects" class="rv">
+    <h2>Projects</h2><h3 class="big">Things I build and ship</h3>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="terminal" class="rv">
+    <h2>Terminal</h2><h3 class="big">Poke around</h3>
+    <div class="term">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="out" id="out"></div>
+      <form id="f"><span class="pr">archie@ascenders:~$</span><input id="in" autocomplete="off" spellcheck="false" aria-label="terminal input" placeholder="type help"></form>
+    </div>
+  </section>
+
+  <section class="rv">
+    <h2>Toolbox</h2><h3 class="big">Stack</h3>
+    <div class="skills" id="skills"></div>
+  </section>
+
+  <section id="story" class="rv">
+    <h2>Story</h2><h3 class="big">How we got here</h3>
+    <div class="tl">
+      <div><b>Day 0</b><p>Self-taught. Started building a Discord bot because it seemed fun.</p></div>
+      <div><b>Growth</b><p>The bot reached 500K+ users across 500+ servers.</p></div>
+      <div><b>The lockout</b><p>A 2FA lockout took it all away. No recovery, no appeal that worked.</p></div>
+      <div><b>Rebuild</b><p>Started The Ascenders: a new site, bot v2 with a proper module system and dashboard, and real software for real businesses (TANDUL).</p></div>
+      <div><b>Now</b><p>Balancing med school with shipping. Still building.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">built by hand · try the Konami code ↑↑↓↓←→←→BA</div></footer>
+<div id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)};
+
+/* ---------- data ---------- */
+const PROJECTS=[
+ {n:'Ascenders Bot v2',ic:'🤖',cat:'bot',st:'building',s:'The Discord bot, rebuilt from scratch.',m:'A modular bot with per-server module toggles, slash command loader and a web dashboard. The first version hit 500K+ users; v2 is built so that never depends on one account again.',t:['discord.js','Express','Node.js']},
+ {n:'theascenders.in',ic:'🌐',cat:'web',st:'live',s:'Dark-luxury personal site with hidden easter eggs.',m:'Astro 7 + Tailwind 4 + TypeScript with a React/Framer Motion island. Snake, a bug quiz, a Konami overlay and a hidden page. Self-hosted in Docker behind a Cloudflare Tunnel, auto-deployed on push.',t:['Astro','Tailwind','TypeScript','Docker'],url:'https://www.theascenders.in'},
+ {n:'TANDUL',ic:'🌾',cat:'biz',st:'live',s:'POS and ERP for a real rice & grain shop.',m:'GST billing with split payments, barcode bag scanning, a mobile scanner portal, a delivery portal, a public storefront and an optional Windows desktop app. Real money, daily use. v4 is the from-scratch rebuild.',t:['POS','ERP','GST','Barcode']},
+ {n:'TANDUL Cloud',ic:'☁️',cat:'biz',st:'planning',s:'TANDUL as multi-tenant SaaS for grain shops.',m:'One deployment, many shops, each with its own catalogue, stock, staff and bills, none visible to another. Designed from a clean slate with scope docs first.',t:['SaaS','Multi-tenant']},
+ {n:'Birthday Site',ic:'🎂',cat:'web',st:'live',s:'A 3D gift to open, a cake to cut, a party page.',m:'Open a 3D gift, cut the cake, then a party: letter, photos, balloon game, fireworks and lanterns. Shares the home server and Cloudflare tunnel.',t:['Three.js','Vite','Docker']},
+ {n:'Internal Portal',ic:'🏢',cat:'tool',st:'live',s:'Team portal with auto-deploy.',m:'Next.js portal with a small deployer service so pushing to main redeploys it.',t:['Next.js','Docker']},
+ {n:'Ascenders Tools',ic:'🧰',cat:'tool',st:'building',s:'A React + Vite toolbox.',m:'Small utilities in one front end, built with Vite and linted with Oxlint.',t:['React','Vite']},
+ {n:'Reminder',ic:'⏰',cat:'tool',st:'building',s:'A reminder app with a server and web client.',m:'Separate server and Vite web client for scheduling reminders.',t:['Node.js','Vite']}
+];
+const CATS={all:'all',bot:'bots',web:'websites',biz:'business',tool:'tools'};
+const SKILLS=['TypeScript','JavaScript','React','Next.js','Astro','Tailwind','Vite','Node.js','Express','discord.js','Three.js','Docker','Cloudflare Tunnel','Ubuntu','Git','Nginx'];
+
+/* ---------- typewriter ---------- */
+const lines=['built a bot used by <b>500K+</b> people','lost it to a <b>2FA lockout</b>','rebuilding it <b>better</b>','shipping software for a <b>real shop</b>','med student by day, dev by night'];
+let li=0,ci=0,del=false;const tw=$('#tw');
+(function tick(){const full=lines[li].replace(/<\/?b>/g,'');
+  ci+=del?-1:1;
+  const shown=full.slice(0,ci);
+  // re-apply bold by mapping plain text back onto the marked-up source
+  let html='',k=0,src=lines[li],inb=false;
+  for(let i=0;i<src.length&&k<shown.length;i++){
+    if(src.startsWith('<b>',i)){html+='<b>';i+=2;continue}
+    if(src.startsWith('</b>',i)){html+='</b>';i+=3;continue}
+    html+=src[i];k++;
+  }
+  tw.innerHTML=html+(html.split('<b>').length>html.split('</b>').length?'</b>':'');
+  let d=del?25:55;
+  if(!del&&ci===full.length){del=true;d=1600}
+  else if(del&&ci===0){del=false;li=(li+1)%lines.length;d=350}
+  setTimeout(tick,d)})();
+
+/* ---------- counters + reveal ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');
+  e.target.querySelectorAll('[data-to]').forEach(el=>{const to=+el.dataset.to,suf=el.dataset.suf;let v=0;const st=performance.now();
+    (function f(t){const p=Math.min(1,(t-st)/1400);el.textContent=Math.round(to*(1-Math.pow(1-p,3)))+suf;if(p<1)requestAnimationFrame(f)})(st)});
+  io.unobserve(e.target)}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* ---------- projects ---------- */
+let cur='all';
+function renderChips(){$('#chips').innerHTML=Object.entries(CATS).map(([k,v])=>`<button class="chip ${k===cur?'on':''}" data-k="${k}">${v}</button>`).join('')}
+function renderGrid(){
+  $('#grid').innerHTML=PROJECTS.filter(p=>cur==='all'||p.cat===cur).map(p=>`
+  <div class="card" tabindex="0">
+    <span class="badge ${p.st==='live'?'live':''}">${p.st==='live'?'● ':''}${p.st}</span>
+    <div class="ic">${p.ic}</div><h4>${p.n}</h4><p class="s">${p.s}</p>
+    <div class="more">${p.m}${p.url?`<br><br><a class="btn" style="display:inline-block" href="${p.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Visit ↗</a>`:''}</div>
+    <div class="tags">${p.t.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+  </div>`).join('')}
+$('#chips').onclick=e=>{const k=e.target.dataset.k;if(!k)return;cur=k;renderChips();renderGrid()};
+$('#grid').addEventListener('click',e=>{const c=e.target.closest('.card');if(c)c.classList.toggle('open')});
+$('#grid').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const c=e.target.closest('.card');if(c){e.preventDefault();c.classList.toggle('open')}}});
+$('#grid').addEventListener('pointermove',e=>{const c=e.target.closest('.card');if(!c)return;const r=c.getBoundingClientRect();
+  c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');
+  const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(700px) rotateY(${x*6}deg) rotateX(${-y*6}deg)`});
+$('#grid').addEventListener('pointerout',e=>{const c=e.target.closest('.card');if(c)c.style.transform=''});
+renderChips();renderGrid();
+$('#skills').innerHTML=SKILLS.map(s=>`<div class="sk">${s}</div>`).join('');
+
+/* ---------- terminal ---------- */
+const out=$('#out'),inp=$('#in');
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const print=h=>{out.insertAdjacentHTML('beforeend',h+'\n');out.scrollTop=out.scrollHeight};
+const CMDS={
+ help:()=>'<span class="k">help</span> about projects stack story contact whoami theme matrix clear',
+ about:()=>'Archie Harvey (Satyam). Self-taught developer and med student.\nBuilt a Discord bot to 500K+ users, lost it to a 2FA lockout, rebuilding better.',
+ whoami:()=>'a person who keeps shipping.',
+ projects:()=>PROJECTS.map(p=>`${p.ic} <span class="k">${p.n.padEnd(18)}</span>${p.s}`).join('\n'),
+ stack:()=>SKILLS.join(' · '),
+ story:()=>'500K+ users → 2FA lockout → The Ascenders → bot v2, TANDUL, theascenders.in.',
+ contact:()=>'<a href="https://www.theascenders.in/contact" target="_blank" rel="noopener">theascenders.in/contact</a>\n<a href="https://github.com/ArchieHarvey" target="_blank" rel="noopener">github.com/ArchieHarvey</a>',
+ theme:()=>{toggleTheme();return 'theme toggled.'},
+ matrix:()=>{matrix=!matrix;return matrix?'wake up, archie...':'back to normal.'},
+ clear:()=>{out.innerHTML='';return null},
+ sudo:()=>'<span class="e">nice try.</span>',
+ secret:()=>'🥚 you found it. Try the Konami code on the page.'
+};
+print('Welcome. Type <span class="k">help</span> to begin.');
+const hist=[];let hi=0;
+$('#f').onsubmit=e=>{e.preventDefault();const raw=inp.value.trim();inp.value='';if(!raw)return;hist.push(raw);hi=hist.length;
+  print(`<span class="pr" style="color:#4ade80">$</span> ${esc(raw)}`);
+  const c=raw.split(/\s+/)[0].toLowerCase();const f=CMDS[c];
+  if(f){const r=f();if(r!==null)print(r)}else print(`<span class="e">command not found:</span> ${esc(c)} (try help)`)};
+inp.onkeydown=e=>{if(e.key==='ArrowUp'&&hi>0){inp.value=hist[--hi];e.preventDefault()}else if(e.key==='ArrowDown'){inp.value=hist[++hi]||'';hi=Math.min(hi,hist.length)}};
+
+/* ---------- theme ---------- */
+function toggleTheme(){const r=document.documentElement;const l=r.dataset.theme==='light';l?r.removeAttribute('data-theme'):r.dataset.theme='light';try{localStorage.setItem('t',l?'dark':'light')}catch(_){}}
+try{if(localStorage.getItem('t')==='light')document.documentElement.dataset.theme='light'}catch(_){}
+$('#theme').onclick=toggleTheme;
+
+/* ---------- particle background (follows mouse) + matrix mode ---------- */
+const cv=$('#bg'),cx=cv.getContext('2d');let W,H,P=[],mouse={x:-999,y:-999},matrix=false,drops=[];
+function size(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=Array.from({length:Math.min(90,Math.floor(W*H/16000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}));drops=Array(Math.floor(W/16)).fill(0)}
+addEventListener('resize',size);size();
+addEventListener('pointermove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function draw(){
+  const light=document.documentElement.dataset.theme==='light';
+  if(matrix){cx.fillStyle='rgba(0,0,0,.1)';cx.fillRect(0,0,W,H);cx.fillStyle='#22c55e';cx.font='14px monospace';
+    drops.forEach((y,i)=>{cx.fillText(String.fromCharCode(0x30A0+Math.random()*96),i*16,y*16);drops[i]=y*16>H&&Math.random()>.975?0:y+1})}
+  else{cx.clearRect(0,0,W,H);const col=light?'124,58,237':'167,139,250';
+    for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+      const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.hypot(dx,dy);if(d<140){p.x+=dx/d*1.2;p.y+=dy/d*1.2}
+      cx.fillStyle=`rgba(${col},.7)`;cx.fillRect(p.x,p.y,2,2)}
+    for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const d=Math.hypot(P[i].x-P[j].x,P[i].y-P[j].y);
+      if(d<110){cx.strokeStyle=`rgba(${col},${.18*(1-d/110)})`;cx.beginPath();cx.moveTo(P[i].x,P[i].y);cx.lineTo(P[j].x,P[j].y);cx.stroke()}}}
+  requestAnimationFrame(draw)}
+if(!reduce)draw();
+
+/* ---------- konami ---------- */
+const K=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let ki=0;
+addEventListener('keydown',e=>{if(e.target===inp)return;ki=(e.key.toLowerCase()===K[ki].toLowerCase())?ki+1:(e.key===K[0]?1:0);
+  if(ki===K.length){ki=0;matrix=!matrix;toast(matrix?'🥚 Konami unlocked: matrix mode':'matrix off')}});
+</script>
+</body>
+</html>

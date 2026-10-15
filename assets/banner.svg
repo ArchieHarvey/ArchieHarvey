@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="260" viewBox="0 0 1000 260">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0b12"/><stop offset="1" stop-color="#15101f"/>
+    </linearGradient>
+    <linearGradient id="t" x1="0" x2="1">
+      <stop offset="0" stop-color="#a78bfa"><animate attributeName="stop-color" values="#a78bfa;#38bdf8;#a78bfa" dur="6s" repeatCount="indefinite"/></stop>
+      <stop offset="1" stop-color="#38bdf8"><animate attributeName="stop-color" values="#38bdf8;#f472b6;#38bdf8" dur="6s" repeatCount="indefinite"/></stop>
+    </linearGradient>
+    <radialGradient id="o1"><stop offset="0" stop-color="#7c3aed" stop-opacity=".55"/><stop offset="1" stop-color="#7c3aed" stop-opacity="0"/></radialGradient>
+    <radialGradient id="o2"><stop offset="0" stop-color="#0ea5e9" stop-opacity=".45"/><stop offset="1" stop-color="#0ea5e9" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1000" height="260" rx="18" fill="url(#g)"/>
+  <circle r="160" fill="url(#o1)"><animate attributeName="cx" values="150;380;150" dur="14s" repeatCount="indefinite"/><animate attributeName="cy" values="60;190;60" dur="11s" repeatCount="indefinite"/></circle>
+  <circle r="190" fill="url(#o2)"><animate attributeName="cx" values="850;620;850" dur="16s" repeatCount="indefinite"/><animate attributeName="cy" values="200;70;200" dur="13s" repeatCount="indefinite"/></circle>
+  <g fill="#fff" opacity=".7">
+    <circle cx="90" cy="40" r="1.4"><animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/></circle>
+    <circle cx="300" cy="215" r="1.2"><animate attributeName="opacity" values="0;1;0" dur="4s" begin="1s" repeatCount="indefinite"/></circle>
+    <circle cx="520" cy="35" r="1.5"><animate attributeName="opacity" values="0;1;0" dur="5s" begin=".5s" repeatCount="indefinite"/></circle>
+    <circle cx="760" cy="225" r="1.3"><animate attributeName="opacity" values="0;1;0" dur="3.5s" begin="2s" repeatCount="indefinite"/></circle>
+    <circle cx="930" cy="50" r="1.6"><animate attributeName="opacity" values="0;1;0" dur="4.5s" begin="1.5s" repeatCount="indefinite"/></circle>
+  </g>
+  <text x="500" y="118" text-anchor="middle" font-family="'JetBrains Mono','SF Mono',Consolas,monospace" font-size="62" font-weight="800" fill="url(#t)">Archie Harvey</text>
+  <text x="500" y="162" text-anchor="middle" font-family="'JetBrains Mono','SF Mono',Consolas,monospace" font-size="19" fill="#c4c4d4">self-taught dev  ·  med student  ·  builds &amp; ships</text>
+  <text x="500" y="205" text-anchor="middle" font-family="'JetBrains Mono','SF Mono',Consolas,monospace" font-size="14" fill="#6b6b85">500K+ users · 500+ servers · one 2FA lockout · rebuilding better</text>
+</svg>
