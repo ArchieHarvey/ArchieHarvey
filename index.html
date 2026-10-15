@@ -221,6 +221,7 @@ const CMDS={
  secret:()=>'🥚 you found it. Try the Konami code on the page.'
 };
 print('Welcome. Type <span class="k">help</span> to begin.');
+for(const c of (new URLSearchParams(location.search).get('run')||'').split(',').filter(Boolean)){print(`<span class="pr" style="color:#4ade80">$</span> ${esc(c)}`);const f=CMDS[c];if(f){const r=f();if(r!==null)print(r)}}
 const hist=[];let hi=0;
 $('#f').onsubmit=e=>{e.preventDefault();const raw=inp.value.trim();inp.value='';if(!raw)return;hist.push(raw);hi=hist.length;
   print(`<span class="pr" style="color:#4ade80">$</span> ${esc(raw)}`);
@@ -251,6 +252,16 @@ function draw(){
       if(d<110){cx.strokeStyle=`rgba(${col},${.18*(1-d/110)})`;cx.beginPath();cx.moveTo(P[i].x,P[i].y);cx.lineTo(P[j].x,P[j].y);cx.stroke()}}}
   requestAnimationFrame(draw)}
 if(!reduce)draw();
+
+/* ---------- capture mode: ?only=projects|terminal|top (used for README screenshots) ---------- */
+{const only=new URLSearchParams(location.search).get('only');if(only){
+  document.querySelectorAll('.rv').forEach(e=>e.classList.add('in'));
+  document.querySelectorAll('[data-to]').forEach(el=>el.textContent=el.dataset.to+el.dataset.suf);
+  document.head.insertAdjacentHTML('beforeend','<style>.rv{opacity:1!important;transform:none!important;transition:none!important}</style>');
+  document.querySelector('nav').style.position='static';
+  if(only!=='top'){document.querySelector('header').style.display='none';
+    document.querySelectorAll('main>section').forEach(sec=>{if(sec.id!==only)sec.style.display='none'})}
+  else document.querySelector('main').style.display='none';}}
 
 /* ---------- konami ---------- */
 const K=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let ki=0;

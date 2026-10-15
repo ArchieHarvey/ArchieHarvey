@@ -34,6 +34,18 @@ Self-taught developer and med student. I grew a Discord bot to **500K+ users acr
 
 > Most repos are private (client work or still cooking), so the interactive page tells the story instead.
 
+### 👀 Peek at the interactive version
+
+<table>
+  <tr>
+    <td width="50%"><a href="https://archieharvey.github.io/ArchieHarvey/"><img src="assets/preview-hero.jpg" alt="Hero" /></a></td>
+    <td width="50%"><a href="https://archieharvey.github.io/ArchieHarvey/#terminal"><img src="assets/preview-terminal.jpg" alt="Working terminal" /></a></td>
+  </tr>
+  <tr>
+    <td colspan="2"><a href="https://archieharvey.github.io/ArchieHarvey/#projects"><img src="assets/preview-projects.jpg" alt="Project cards" /></a></td>
+  </tr>
+</table>
+
 ### 🛠️ Stack
 
 <p>
@@ -53,14 +65,7 @@ Self-taught developer and med student. I grew a Discord bot to **500K+ users acr
 
 ### 📊 Stats
 
-<p>
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=ArchieHarvey&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=ArchieHarvey&layout=compact&theme=tokyonight&hide_border=true" />
-</p>
-
-<p>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=ArchieHarvey&theme=tokyonight&hide_border=true" height="150" />
-</p>
+<p align="center"><img src="assets/stats.svg" alt="stats" width="100%" /></p>
 
 ---
 
